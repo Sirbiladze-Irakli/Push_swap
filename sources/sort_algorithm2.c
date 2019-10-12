@@ -6,23 +6,22 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 10:48:35 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:25:31 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:14:33 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		sort_stacks(t_push **psa, t_ptrs *a, t_push **psb, t_ptrs *b)
+void		sort_stacks(t_push **psa, t_ptrs *a, t_push **psb, t_ptrs **b)
 {
-	t_push		*tmp1;
-	t_push		*tmp2;
 	int			turndown;
 
 	turndown = (*psb)->turn;
+	// turndown = 100000000;
 	while (turndown > 0)
 	{
 		init_sec_and_last(psa, &a);
-		init_sec_and_last(psb, &b);
+		init_sec_and_last(psb, b);
 		if ((*psb)->order > ALAST && (*psb)->order < ATOP)
 		{
 			write_order_pa(psb, psa);
@@ -30,9 +29,9 @@ void		sort_stacks(t_push **psa, t_ptrs *a, t_push **psb, t_ptrs *b)
 		}
 		if ((*psb)->order == 0)
 			break ;
-		analize_stack_b(psb, &b);
-		analize_stack_a(psa, &a, psb, &b);
-		which_way(psa, &a, psb, &b);
+		analize_stack_b(psb, b, turndown);			// fix time to work!
+		analize_stack_a(psa, &a, psb);			// fix time to work!
+		which_way(psa, psb, turndown);			// fix time to work!
 	}
 }
 

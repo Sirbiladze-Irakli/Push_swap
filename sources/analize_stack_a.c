@@ -6,13 +6,13 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:49:37 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:35:42 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 18:33:10 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		analize_stack_a(t_push **psa, t_ptrs **a, t_push **psb, t_ptrs **b)
+void		analize_stack_a(t_push **psa, t_ptrs **a, t_push **psb)
 {
 	t_push		*tmpb;
 	t_push		*tmpa;
@@ -51,8 +51,7 @@ void		analize_stack_a1(t_push **psa, t_ptrs **a,
 	}
 }
 
-void		sort_three_elem2(t_push **psa, t_ptrs *a,
-				t_push **psb, t_push *smallest)
+void		sort_three_elem2(t_push **psa, t_ptrs *a, t_push *smallest)
 {
 	init_sec_and_last(psa, &a);
 	if (ATOP > ASEC && ASEC > ALAST)

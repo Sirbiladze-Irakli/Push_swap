@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 13:02:24 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:24:44 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 20:29:43 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		check_num(char *av, int *i, t_push **ps, int *order)
 	char			buf[11];
 
 	j = 0;
-	while (ft_strchr("-0123456789", av[(*i)]) && j < 13)
+	while (ft_strchr("-+0123456789", av[(*i)]) && j < 13)
 		buf[j++] = av[(*i)++];
 	buf[j] = '\0';
 	add_node(ps, order, buf);
@@ -41,11 +41,13 @@ int			valid_arg(char *av, t_push **ps, int *order)
 	i = -1;
 	while (av[++i])
 	{
-		if (!ft_strchr(" -0123456789", av[i]))
+		if (!ft_strchr(" -+0123456789", av[i]))
 			return (ERROR);
 		if (av[i] == '-' && !ft_strchr("123456789", av[i + 1]))
 			return (ERROR);
-		if (ft_strchr("-0123456789", av[i]))
+		if (av[i] == '+' && !ft_strchr("123456789", av[i + 1]))
+			return (ERROR);
+		if (ft_strchr("-+0123456789", av[i]))
 			check_num(av, &i, ps, order);
 	}
 	return (OK);

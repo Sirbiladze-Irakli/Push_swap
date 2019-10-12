@@ -6,13 +6,13 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 18:49:40 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:36:40 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 18:33:13 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		analize_stack_b(t_push **psb, t_ptrs **b)
+void		analize_stack_b(t_push **psb, t_ptrs **b, int turndown)
 {
 	t_push		*tmp;
 	int			turn;
@@ -20,7 +20,7 @@ void		analize_stack_b(t_push **psb, t_ptrs **b)
 
 	i = 0;
 	tmp = (*psb);
-	turn = (*psb)->turn;
+	turn = turndown;
 	stack_len(psb, b);
 	while (tmp)
 	{

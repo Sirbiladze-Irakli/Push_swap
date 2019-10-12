@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 13:37:36 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:22:48 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:07:08 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@ void		sort_algorithm(t_push **psa, t_push **psb)
 {
 	t_ptrs		*a;
 	t_ptrs		*b;
-	t_push		*tmp1;
-	t_push		*tmp2;
 
-	init_ptrs(psa, a);
+	init_ptrs(psa, &a);
 	if (is_it_sorted2(psa, a) == OK)
 		return ;
 	else
 	{
 		if (a->biggest_ord > 5)
 		{
-			push_stack_b(psa, a, psb, b);
-			sort_stacks(psa, a, psb, b);
+			push_stack_b(psa, a, psb);
+			sort_stacks(psa, a, psb, &b);
 			if (ATOP != 1)
 				last_rotate(psa, a);
 		}
@@ -52,7 +50,7 @@ int			is_it_sorted2(t_push **psa, t_ptrs *a)
 	return (ERROR);
 }
 
-void		init_ptrs(t_push **psa, t_ptrs *a)
+void		init_ptrs(t_push **psa, t_ptrs **a)
 {
 	t_push		*tmp;
 	int			count;
@@ -61,26 +59,26 @@ void		init_ptrs(t_push **psa, t_ptrs *a)
 	if ((*psa) != NULL)
 	{
 		tmp = (*psa);
-		a->biggest_ord = 1;
-		a->last = (*psa);
+		(*a)->biggest_ord = 1;
+		(*a)->last = (*psa);
 		if ((*psa)->next != NULL)
 		{
-			a->second = (*psa)->next;
+			(*a)->second = (*psa)->next;
 			while (tmp != NULL)
 			{
 				tmp->position = count++;
-				if (tmp->order > a->biggest_ord)
-					a->biggest_ord = tmp->order;
-				a->last = tmp;
+				if (tmp->order > (*a)->biggest_ord)
+					(*a)->biggest_ord = tmp->order;
+				(*a)->last = tmp;
 				tmp = tmp->next;
 			}
 		}
-		a->middle_ord = a->biggest_ord / 10 * 9;
-		a->middle = a->biggest_ord / 2;
+		(*a)->middle_ord = (*a)->biggest_ord / 2;
+		(*a)->middle = (*a)->biggest_ord / 2;
 	}
 }
 
-void		push_stack_b(t_push **psa, t_ptrs *a, t_push **psb, t_ptrs *b)
+void		push_stack_b(t_push **psa, t_ptrs *a, t_push **psb)
 {
 	int			count;
 	int			turnup;
@@ -92,7 +90,7 @@ void		push_stack_b(t_push **psa, t_ptrs *a, t_push **psb, t_ptrs *b)
 		if ((count - 1) == a->middle_ord)
 		{
 			turnup++;
-			a->middle_ord = a->middle_ord / 10 * 9;
+			a->middle_ord = a->middle_ord / 2;
 		}
 		if (ATOP != 1 && ATOP != a->biggest_ord && ATOP != a->middle
 			&& ATOP >= a->middle_ord)

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 18:14:48 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:30:16 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 12:20:06 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void		order_sa_sb(t_push **ps)
 			&& (*ps)->next->order != 0)
 	{
 		psn = (*ps)->next;
-		sa_sb_swap(ps, psn, next);
+		sa_sb_swap(ps, psn, &next);
 		go_to_head(ps);
 	}
 }
 
-void		sa_sb_swap(t_push **ps, t_push *psn, t_push *next)
+void		sa_sb_swap(t_push **ps, t_push *psn, t_push **next)
 {
 	if (psn->next != NULL)
 	{
-		next = psn->next;
+		(*next) = psn->next;
 		psn->prev = NULL;
 		psn->next = (*ps);
 		(*ps)->prev = psn;
-		(*ps)->next = next;
-		next->prev = (*ps);
+		(*ps)->next = (*next);
+		(*next)->prev = (*ps);
 	}
 	else
 	{
@@ -61,7 +61,7 @@ void		order_pa_pb(t_push **psa, t_push **psb)
 	else
 	{
 		if ((*psa)->next != NULL)
-			pa_pb_with_next(psa, psb, nexta);
+			pa_pb_with_next(psa, psb, &nexta);
 		else
 		{
 			if ((*psb) != NULL)
@@ -77,9 +77,9 @@ void		order_pa_pb(t_push **psa, t_push **psb)
 	}
 }
 
-void		pa_pb_with_next(t_push **psa, t_push **psb, t_push *nexta)
+void		pa_pb_with_next(t_push **psa, t_push **psb, t_push **nexta)
 {
-	nexta = (*psa)->next;
+	(*nexta) = (*psa)->next;
 	if ((*psb) != NULL && (*psb)->order != 0)
 	{
 		(*psa)->next = (*psb);
@@ -87,7 +87,7 @@ void		pa_pb_with_next(t_push **psa, t_push **psb, t_push *nexta)
 	}
 	else
 		(*psa)->next = NULL;
-	nexta->prev = NULL;
+	(*nexta)->prev = NULL;
 	(*psb) = (*psa);
-	(*psa) = nexta;
+	(*psa) = (*nexta);
 }

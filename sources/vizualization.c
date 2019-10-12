@@ -6,45 +6,67 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 19:17:33 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:20:33 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 21:40:49 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void		gnl_executor(t_push **psa, t_push **psb, char *line, char *av)
-{
-	commander(line, psa, psb);
-	free(line);
-	if (!(ft_strcmp(av, "-v")))
-		vizualization(*psa, *psb);
-}
-
-void		vizualization(t_push *psa, t_push *psb)
+void		vizualization(t_push *psa, t_push **psb)
 {
 	t_push		*a;
 	t_push		*b;
 
 	a = psa;
-	b = psb;
-	printf(" A \t B \n");
+	b = (*psb);
+	usleep(100000);
+	system("clear");
+	cyan();
+	write(1, "\n A \t B \n", 9);
+	reset();
 	while (a || b)
 	{
-		if (a && b)
-		{
-			printf("[%d]\t[%d]\n", a->order, b->order);
-			a = a->next;
-			b = b->next;
-		}
-		else if (!a && b)
-		{
-			printf("[0]\t[%d]\n", b->order);
-			b = b->next;
-		}
-		else if (a && !b)
-		{
-			printf("[%d]\t[0]\n", a->order);
-			a = a->next;
-		}
+		if (a || !b)
+			only_a(&a);
+		else if (!a && b && b->order != 0)
+			only_b(&b);
+		else if (b->order == 0)
+			break ;
 	}
+}
+
+void		only_a(t_push **a)
+{
+	green();
+	write(1, "[", 1);
+	reset();
+	ft_putnbr((*a)->order);
+	green();
+	write(1, "]\t", 2);
+	red();
+	write(1, "[ ]\n", 4);
+	reset();
+	(*a) = (*a)->next;
+}
+
+void		only_b(t_push **b)
+{
+	red();
+	write(1, "[ ]\t", 4);
+	green();
+	write(1, "[", 1);
+	reset();
+	ft_putnbr((*b)->order);
+	green();
+	write(1, "]\n", 2);
+	reset();
+	(*b) = (*b)->next;
+}
+
+void		end_of_vizualization(int order)
+{
+	write(1, "num of orders: ", 15);
+	cyan();
+	ft_putnbr(order);
+	write(1, "\n", 1);
 }

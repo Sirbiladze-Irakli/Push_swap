@@ -6,7 +6,7 @@
 #    By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/22 20:37:00 by jormond-          #+#    #+#              #
-#    Updated: 2019/09/24 19:28:05 by jormond-         ###   ########.fr        #
+#    Updated: 2019/09/25 20:15:27 by jormond-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	push_swap.a
 PUSH_SWAP	=	push_swap
 CHECKER		=	checker
 CC = gcc
-# FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 LIBRARIES = -lft -L$(LIBFT_DIRECTORY)
 INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
 
@@ -32,7 +32,7 @@ SOURCES_LIST =  validator.c manipulate_struct.c sort_order.c \
 				sort_algorithm.c sort_algorithm2.c vizualization.c \
 				write_orders1.c write_orders2.c write_orders3.c \
 				analize_stack_a.c analize_stack_b.c which_way.c \
-				commands.c
+				commands.c colors.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 SOURCE_PS = $(addprefix $(SOURCES_DIRECTORY), push_swap.c)
 SOURCE_CH = $(addprefix $(SOURCES_DIRECTORY), checker.c)

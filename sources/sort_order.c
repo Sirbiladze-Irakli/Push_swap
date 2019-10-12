@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 12:57:03 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:26:53 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 12:16:52 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void		sort_order(t_push **ps, int order)
 {
 	int		i;
 	int		tmp[1000];
-	t_push	*tm;
 
 	i = -1;
 	while ((*ps)->next != NULL)

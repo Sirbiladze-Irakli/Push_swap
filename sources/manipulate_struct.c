@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:29:26 by jormond-          #+#    #+#             */
-/*   Updated: 2019/09/24 21:34:20 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:46:07 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void			struct_init(t_push **ps, int *order, char *buf)
 	(*ps)->next = NULL;
 	(*ps)->prev = NULL;
 	(*ps)->data = ft_atoi(buf);
-	(*ps)->links = 0;
 	(*ps)->turn = 0;
 	(*ps)->aprevdist = 0;
 	(*ps)->anextdist = 0;
@@ -63,7 +62,6 @@ t_push			*ps_lstnew(t_push **ps, int order, char *buf)
 		error_output();
 	tmp->next = NULL;
 	tmp->prev = (*ps);
-	tmp->links = 0;
 	tmp->turn = 0;
 	tmp->aprevdist = 0;
 	tmp->anextdist = 0;
